@@ -20,13 +20,11 @@
   ];
   const NUMBER_PICTURE = 25;
 
-  function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+  const getRandomInt = (max, min) => Math.floor(Math.random() * (max - min + 1) + min);
 
   const getUserComments = () => {
     const arrayComments = [];
-    for (let i = 0; i < getRandomInt(1, 7); i++) {
+    for (let i = 0; i < getRandomInt(1, 50); i++) {
       arrayComments.push({
         avatar: `img/avatar-${getRandomInt(1, 6)}.svg`,
         message: USER_MESSAGES[Math.floor(Math.random() * USER_MESSAGES.length)],
@@ -36,14 +34,6 @@
     return arrayComments;
   };
 
-  const getArrayComments = () => {
-    const comments = [];
-    for (let i = 0; i < getRandomInt(0, 10); i++) {
-      comments.push(getUserComments());
-    }
-    return comments;
-  };
-
   const getUserPictures = () => {
     const arrayUserPictures = [];
     for (let i = 1; i <= NUMBER_PICTURE; i++) {
@@ -51,7 +41,7 @@
         url: `photos/${i}.jpg`,
         description: `Описание фотографии`,
         likes: getRandomInt(15, 200),
-        comments: getArrayComments()
+        comments: getUserComments()
       });
     }
     return arrayUserPictures;
@@ -77,23 +67,3 @@
   sectionPictures.appendChild(fragment);
 
 })();
-
-
-/* const bigPicture = document.querySelector(`.big-picture`);
-bigPicture.classList.remove(`hidden`);
-
-/* const bigPictureImg = bigPicture.querySelector(`.big-picture__img img`); */
-
-/* const getBigPicture = function (datapicture) {
-  bigPicture.querySelector(`.big-picture__img img`).src = datapicture.url;
-  bigPicture.querySelector(`.social__caption`).textContent = datapicture.description;
-  bigPicture.querySelector(`.likes-count`).textContent = datapicture.likes;
-  bigPicture.querySelector(`.comments-count`).textContent = datapicture.comments.length;
-};
-
-
-for (let i = 0; i < getPicture.length; i++) {
-  bigPicture.innerHTML(getBigPicture(getPicture[i]));
-} * / */
-
-
